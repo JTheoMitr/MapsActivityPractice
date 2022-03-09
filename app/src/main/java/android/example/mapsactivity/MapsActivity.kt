@@ -34,13 +34,27 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
      Changed mMap to map (following Kotlin convention)
      Map now opens in Reading, MA by default
      */
+    // Original onMapReady override format:
+//    override fun onMapReady(googleMap: GoogleMap) {
+//        map = googleMap
+//
+//        // Add a marker in Sydney and move the camera
+//        val reading = LatLng(42.52591, -71.10378)
+//        map.addMarker(MarkerOptions().position(reading).title("Marker in Reading, MA"))
+//        map.moveCamera(CameraUpdateFactory.newLatLng(reading))
+//    }
+
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        // Add a marker in Sydney and move the camera
-        val reading = LatLng(42.52591, -71.10378)
-        map.addMarker(MarkerOptions().position(reading).title("Marker in Reading, MA"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(reading))
+        //These coordinates represent the latitude and longitude of the Googleplex.
+        val latitude = 42.52591
+        val longitude = -71.10378
+        val zoomLevel = 15f
+
+        val homeLatLng = LatLng(latitude, longitude)
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(homeLatLng, zoomLevel))
+        map.addMarker(MarkerOptions().position(homeLatLng))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
