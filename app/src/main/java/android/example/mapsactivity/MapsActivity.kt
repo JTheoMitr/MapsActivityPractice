@@ -31,21 +31,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
+     Changed mMap to map (following Kotlin convention)
+     Map now opens in Reading, MA by default
      */
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
         // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val reading = LatLng(42.52591, -71.10378)
+        map.addMarker(MarkerOptions().position(reading).title("Marker in Reading, MA"))
+        map.moveCamera(CameraUpdateFactory.newLatLng(reading))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
